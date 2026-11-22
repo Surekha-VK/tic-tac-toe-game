@@ -1,0 +1,14 @@
+{
+  "name": "tic-tac-toe-client-project",
+  "version": "1.0.0",
+  "description": "Tic-Tac-Toe with local, AI and real-time multiplayer modes",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}

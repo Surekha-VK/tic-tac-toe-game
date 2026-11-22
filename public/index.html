@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe — Play</title>
+  <meta name="description" content="Play Tic Tac Toe locally, against AI, or online with a friend.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/logo.jpg">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Tic Tac Toe home"><img class="brand-logo" src="assets/logo.jpg" alt="Tic Tac Toe logo"></a>
+      <div class="top-actions"><span class="online-dot"></span><span id="connection-label">Ready to play</span><button class="icon-button sound-toggle" id="sound-toggle" title="Toggle sound" aria-label="Turn sound off">🔊</button></div>
+    </header>
+
+    <section class="hero" id="home-screen">
+      <p class="eyebrow">A LITTLE STRATEGY. A LOT OF FUN.</p>
+      <h1>Make your <span>move.</span></h1>
+      <p class="hero-copy">Three in a row. Your choice of opponent.</p>
+      <div class="mode-cards">
+        <button class="mode-card" data-mode="local">
+          <span class="mode-icon">♟</span><span class="mode-title">Local 2 Player</span>
+          <span class="mode-description">Take turns on the same device</span><span class="mode-arrow">→</span>
+        </button>
+        <button class="mode-card" data-mode="ai">
+          <span class="mode-icon">✦</span><span class="mode-title">Play vs AI</span>
+          <span class="mode-description">Challenge a bot with 3 levels</span><span class="mode-arrow">→</span>
+        </button>
+        <button class="mode-card" data-mode="online">
+          <span class="mode-icon">⌁</span><span class="mode-title">Play Online</span>
+          <span class="mode-description">Invite a friend with a room code</span><span class="mode-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="game-screen hidden" id="game-screen">
+      <div class="game-heading">
+        <button class="back-button" id="back-home">← Modes</button>
+        <div><p class="eyebrow" id="mode-label">GAME MODE</p><h2 id="game-title">Local 2 Player</h2></div>
+        <button class="reset-button" id="reset-game" title="Restart" aria-label="Restart game"><span class="restart-icon">⟲</span><span>Restart</span></button>
+      </div>
+      <div id="online-panel" class="online-panel hidden">
+        <div class="online-setup" id="online-setup">
+          <label>Your display name <input id="player-name" maxlength="20" placeholder="Enter your name"></label>
+          <div class="online-actions">
+            <button class="primary" id="create-room">Create room</button>
+            <div class="join-row"><input id="room-code-input" maxlength="5" placeholder="ROOM CODE"><button class="secondary" id="join-room">Join</button></div>
+          </div>
+        </div>
+        <div class="room-info hidden" id="room-info"><span>ROOM CODE</span><strong id="room-code">-----</strong><button class="secondary" id="copy-code">Copy code</button></div>
+      </div>
+      <div class="game-layout">
+        <div class="board-wrap">
+          <div class="status-pill" id="status">X's turn</div>
+          <div class="board" id="board" role="grid" aria-label="Tic Tac Toe board">
+            <button class="cell" data-index="0" aria-label="Cell 1"></button><button class="cell" data-index="1" aria-label="Cell 2"></button><button class="cell" data-index="2" aria-label="Cell 3"></button>
+            <button class="cell" data-index="3" aria-label="Cell 4"></button><button class="cell" data-index="4" aria-label="Cell 5"></button><button class="cell" data-index="5" aria-label="Cell 6"></button>
+            <button class="cell" data-index="6" aria-label="Cell 7"></button><button class="cell" data-index="7" aria-label="Cell 8"></button><button class="cell" data-index="8" aria-label="Cell 9"></button>
+          </div>
+          <p class="game-hint" id="game-hint">Choose an empty square to make your move.</p>
+        </div>
+        <aside class="sidebar">
+          <div class="score-card"><p class="eyebrow">MATCH SCORE</p><div class="score-row"><div><span class="score-symbol x">X</span><small id="x-name">Player X</small><strong id="x-score">0</strong></div><div class="score-divider"></div><div><span class="score-symbol o">O</span><small id="o-name">Player O</small><strong id="o-score">0</strong></div><div class="score-divider"></div><div><span class="score-symbol draw-symbol">—</span><small>Draws</small><strong id="draw-score">0</strong></div></div></div>
+          <div class="settings-card hidden" id="ai-settings"><p class="eyebrow">BOT DIFFICULTY</p><div class="difficulty"><button data-level="easy">Easy</button><button data-level="medium">Medium</button><button class="active" data-level="hard">Hard</button></div><p class="settings-note" id="difficulty-note">Hard: unbeatable minimax strategy.</p></div>
+          <div class="settings-card"><p class="eyebrow">HOW TO PLAY</p><p class="howto">Place your symbol in an empty square. Get three in a row horizontally, vertically, or diagonally to win.</p></div>
+        </aside>
+      </div>
+    </section>
+    <footer>Made to play. Built to learn. <span>✦</span></footer>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
