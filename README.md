@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Tic-Tac-Toe — Bright Wooden Edition
 
 This update uses the **exact background image supplied by the client** as the full-page background and keeps the supplied logo unchanged.
@@ -33,3 +34,6 @@ Browsers usually require a click/tap before audio can play. Start a game and sou
 5. Open `http://localhost:3000`.
 
 Online play requires deploying the Node.js server to a host that supports WebSockets/Socket.IO; static hosting alone is not enough.
+=======
+# tic-tac-toe-game
+>>>>>>> 862ca57aed9b0b743cee324bdb3ec90dad7131ed
